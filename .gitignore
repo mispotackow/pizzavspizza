@@ -1,0 +1,17 @@
+.DS_Store
+.idea
+.pyc
+.env
+__pycache__/
+migrations/
+staticfiles/
+media/
+profile_images/
+node_modules/
+bundles/
+db.sqlite3
+thumbs.db
+Thumbs.db
+webpack-stats.json
+geckodriver.log
+*.key
