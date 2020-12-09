@@ -2,7 +2,7 @@
 RESTful Web Services with Django and React
 
 1) Starting  
-2) Build our back-­end  
+2) Build back-­end  
 3) Started with React  
 4) Assembling pieces  
 5) Introduction to React Native  
