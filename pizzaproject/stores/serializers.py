@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.reverse import reverse
 from .models import Pizzeria
 
 
@@ -8,6 +9,8 @@ class PizzeriaListSerializer(serializers.ModelSerializer):
     Представление списка обычно содержит ограниченное количество деталей, самые важные,
     такие как имя, город и некоторые другие важные атрибуты. Он также включает поле id.
     """
+    absolute_url = serializers.SerializerMethodField()
+
     class Meta:
         model = Pizzeria
         fields = [
@@ -15,10 +18,17 @@ class PizzeriaListSerializer(serializers.ModelSerializer):
             'pizzeria_name',
             'city',
             'zip_code',
+            'absolute_url'
         ]
+
+    def get_absolute_url(self, obj):
+        return reverse('pizzeria_detail', args=(obj.pk,))
 
 
 class PizzeriaDetailSerializer(serializers.ModelSerializer):
+    update = serializers.SerializerMethodField()
+    delete = serializers.SerializerMethodField()
+
     class Meta:
         model = Pizzeria
         fields = [
@@ -33,26 +43,13 @@ class PizzeriaDetailSerializer(serializers.ModelSerializer):
             'description',
             'logo_image',
             'email',
-            'active'
+            'active',
+            'update',
+            'delete',
         ]
 
+    def get_update(self, obj):
+        return reverse('pizzeria_update', args=(obj.pk,))
 
-
-
-
-
-
-
-
-
-# class PizzeriaListSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Pizzeria
-#         fields = [
-#             'id',
-#             'logo_image',
-#             'pizzeria_name',
-#             'city',
-#             'zip_code',
-#             'absolute_url'
-#         ]
+    def get_delete(self, obj):
+        return reverse('pizzeria_delete', args=(obj.pk,))

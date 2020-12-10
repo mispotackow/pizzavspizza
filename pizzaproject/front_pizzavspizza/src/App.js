@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import PizzaList from './pizzerias/pizzeriaslist'
 import './App.css';
 
