@@ -33,3 +33,14 @@ class Pizzeria(models.Model):
 
     def __str__(self):
         return "{}, {}".format(self.pizzeria_name, self.city)
+
+
+class Image(models.Model):
+    pizzeria = models.ForeignKey(Pizzeria, on_delete=models.CASCADE, related_name='pizzeria_images',
+                                 blank=True, null=True)
+    image = models.ImageField(upload_to='photos', blank=True)
+    image_title = models.CharField(max_length=120, blank=True)
+    uploded_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-uploded_at']

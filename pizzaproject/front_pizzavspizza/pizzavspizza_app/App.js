@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ListView from './src/screens/components/list_view';
+import ListView from './src/screens/components/function_list_view';
 import DetailView from './src/screens/components/detail_view';
 import ScreenA from './src/screens/drawer/screenA.js';
 import ScreenB from './src/screens/drawer/screenB.js';
@@ -57,4 +57,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww

@@ -1,26 +1,55 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View, Text, Image, FlatList } from 'react-native';
+import client from './../../api/client';
+import styles from './detail_styles';
 
-class DetailView extends Component {
-  render() {
-    return (
-      <View style={styles.center}>
-        <Text style={styles.title}>Detail View</Text>
-        <Button title='Click for Tabs' onPress={() => this.props.navigation.navigate('Tabs')} />
-      </View>
-    );
-  }
-}
+const DetailView = ({ navigation, route }) => {
+  const [detail, setDetail] = useState("");
+  const { objurl } = route.params;
 
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 36,
-    marginBottom: 16,
-  },
-});
+  const getDetail = async (url) => {
+    console.log(url);
+    try {
+      const response = await client.get(url);
+      if (!response.ok) {
+        console.log(response);
+        setDetail(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getDetail(objurl);
+  }, []);
+
+  return (
+    <View style={styles.center}>
+      <FlatList
+        horizontal={true}
+        data={detail.pizzeria_images}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => {
+          return (
+            <Image
+              style={styles.pizzaImage}
+              source={{
+                uri: item.image,
+              }}
+            />
+          );
+        }}
+      />
+      <Text style={styles.title}>{detail.pizzeria_name}</Text>
+      <Text style={styles.details}>{detail.street}</Text>
+      <Text style={styles.details}>City: {detail.city}, {detail.state},{detail.zip_code}</Text>
+      <Text style={styles.details}>{detail.website}</Text>
+      <Text style={styles.details}>{detail.email}</Text>
+      <Text style={styles.details}>Ph: {detail.phone_number}</Text>
+      <Text style={styles.details}>{detail.description}</Text>
+    </View>
+  );
+};
+
 export default DetailView;

@@ -7,6 +7,8 @@ migrations/
 staticfiles/
 media/
 profile_images/
+photos/
+pizzariaImages/
 node_modules/
 bundles/
 db.sqlite3
