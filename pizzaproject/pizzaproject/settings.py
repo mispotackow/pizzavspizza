@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '!=6rp*hzduyi+h$@r7s-9rco4!2^$(b-br%%el48bzcb78w11e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -127,3 +127,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+if DEBUG is True:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = '/static/'
+    STATICFILES_DIRS = [
+        Path(BASE_DIR, 'static')
+    ]
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = Path(BASE_DIR, 'media')
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = '/var/www/venv/pizzavspizza/pizzaproject/static/'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = Path(BASE_DIR, '/var/www/venv/pizzaproject/pizzaproject/media/')
+    STATICFILES_DIRS = [
+        Path(BASE_DIR, '/var/www/venv/pizzavspizza/pizzaproject/static/')
+    ]
