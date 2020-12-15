@@ -4,7 +4,7 @@ import client from './../../api/client';
 import styles from './detail_styles';
 
 const DetailView = ({ navigation, route }) => {
-  const [detail, setDetail] = useState("");
+  const [detail, setDetail] = useState(" ");
   const { objurl } = route.params;
 
   const getDetail = async (url) => {

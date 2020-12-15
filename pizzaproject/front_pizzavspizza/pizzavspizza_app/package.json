@@ -16,6 +16,7 @@
     "axios": "^0.21.0",
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
+    "formik": "^2.2.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
@@ -23,7 +24,10 @@
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.0",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "save": "^2.4.0",
+    "yup": "^0.32.8",
+    "expo-image-picker": "~9.2.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

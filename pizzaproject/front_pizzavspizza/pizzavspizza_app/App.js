@@ -6,9 +6,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ListView from './src/screens/components/function_list_view';
 import DetailView from './src/screens/components/detail_view';
-import ScreenA from './src/screens/drawer/screenA.js';
-import ScreenB from './src/screens/drawer/screenB.js';
-import ScreenC from './src/screens/drawer/screenC.js';
+import AddPizzeria from './src/screens/drawer/addPizzeria.js';
+import RegForm from './src/screens/drawer/regForm.js';
+import LoginForm from './src/screens/drawer/loginForm.js';
 import TabOne from './src/screens/tabs/tab1.js';
 import TabTwo from './src/screens/tabs/tab2.js';
 
@@ -41,9 +41,9 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator>
         <Drawer.Screen name='Home' children={this.renderScreenComponents} />
-        <Drawer.Screen name='Screen A' component={ScreenA} />
-        <Drawer.Screen name='Screen B' component={ScreenB} />
-        <Drawer.Screen name='Screen C' component={ScreenC} />
+        <Drawer.Screen name='Add Pizzeria' component={AddPizzeria} />
+        <Drawer.Screen name='Registration' component={RegForm} />
+        <Drawer.Screen name='Login' component={LoginForm} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

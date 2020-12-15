@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from rest_framework import generics
-from .serializers import PizzeriaListSerializer, PizzeriaDetailSerializer
+from django.contrib.auth import get_user_model
+from rest_framework import generics, permissions
+from rest_framework.parsers import MultiPartParser
+from .serializers import PizzeriaListSerializer, PizzeriaDetailSerializer, UserSerializer
 from .models import Pizzeria
-# Create your views here.
 
 
 class PizzeriaListAPIView(generics.ListAPIView):
@@ -35,6 +36,7 @@ class PizzeriaCreateAPIView(generics.CreateAPIView):
     Предоставляет «post» обработчик метода.
     Расширяется: GenericAPIView , CreateModelMixin
     """
+    parser_classes = [MultiPartParser]
     queryset = Pizzeria.objects.all()
     serializer_class = PizzeriaDetailSerializer
 
@@ -69,9 +71,8 @@ class PizzeriaDestroyAPIView(generics.DestroyAPIView):
     queryset = Pizzeria.objects.all()
 
 
-
-
-
-
-
-# документация: https://www.django-rest-framework.org/api-guide/generic-views/
+class UserCreateView(generics.CreateAPIView):
+    model = get_user_model()
+    parser_classes = [MultiPartParser]
+    permission_classes = [permissions.AllowAny]
+    serializer_class = UserSerializer
